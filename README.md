@@ -10,13 +10,13 @@ Perfect for blogging websites, Impulse Netlify comes with everything you need to
 
 ## Quick Install
 
-[Deploy to netlify](https://app.netlify.com/start/deploy?repository=https://github.com/rosstopping/impulse-netlify&stack=cms)
+<a href="https://app.netlify.com/start/deploy?repository=https://github.com/rosstopping/impulse-netlify&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" /></a>
 
 
 | ![image](https://novolio.dev/images/themes/impulse/preview.png) |
 | ------------------------------------------------------------------------------------------------------------- |
 
-## Getting Started
+## Using template on Netlify
 
 Prefer to watch a quick tutorial? [Watch video](https://www.youtube.com/watch?v=b3R7Ca1saJI)
 
@@ -56,6 +56,39 @@ All of our themes come with custom email templates for use with Netlify. To enab
 #### Email change template
 ``` /email-templates/email-change.html ```
 
+## Development
+
+### 1\. Clone this Repository
+
+```
+git clone https://github.com/rosstopping/impulse-netlify.git
+```
+
+### 2\. Navigate to the directory
+
+```
+cd impulse-netlify
+```
+
+### 3\. Install dependencies
+
+```
+npm install
+```
+
+### 4\. Build the project to generate the first CSS
+
+This step is only required the very first time.
+
+```
+npm run build
+```
+
+### 5\. Run Eleventy
+
+```
+npm run start
+```
 
 ## Author
 
