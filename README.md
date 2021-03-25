@@ -41,6 +41,22 @@ Go to the Identify section to enable. Then make sure to enable 'Git Gateway'. We
 
 ![image](https://novolio.dev/images/git-gateway.png)
 
+### 4\. Email Templates
+All of our themes come with custom email templates for use with Netlify. To enable these go to the Identity > Emails section and enter the following paths for each template.
+
+#### Invitation template
+``` /email-templates/invitation.html ```
+
+#### Confirmation template
+``` /email-templates/confirmation.html ```
+
+#### Recovery template
+``` /email-templates/recovery.html ```
+
+#### Email change template
+``` /email-templates/email-change.html ```
+
+
 ## Author
 
 Novolio [@novolio_dev](https://novolio.dev/)
