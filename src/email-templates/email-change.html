@@ -1,0 +1,10 @@
+---
+permalink: '/email-templates/email-change.html'
+---
+
+<h1 style="font-family: serif; font-size: 22px;">You have been invited</h1>
+<p>Verify your new sign-in email for {{ '{{ .SiteURL }}' }}. Follow this link to verify:</p>
+<a href="{{ '{{ .SiteURL }}' }}/admin/#email_change_token={{ '{{ .Token }}' }}">Verify email address</a>
+
+<p>If the above link doesn't work, copy this and paste is directly into your browser.</p>
+<p>{{ '{{ .SiteURL }}' }}/admin/#email_change_token={{ '{{ .Token }}' }}</p>

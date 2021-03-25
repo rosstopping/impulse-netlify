@@ -1,0 +1,10 @@
+---
+permalink: '/email-templates/recovery.html'
+---
+
+<h1 style="font-family: serif; font-size: 22px;">Reset your password</h1>
+<p>Follow this link to reset the password for your user:</p>
+<a href="{{ '{{ .SiteURL }}' }}/admin/#recovery_token={{ '{{ .Token }}' }}">Reset Password</a>
+
+<p>If the above link doesn't work, copy this and paste is directly into your browser.</p>
+<p>{{ '{{ .SiteURL }}' }}/admin/#recovery_token={{ '{{ .Token }}' }}</p>

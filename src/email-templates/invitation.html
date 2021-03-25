@@ -1,0 +1,10 @@
+---
+permalink: '/email-templates/invitation.html'
+---
+
+<h1 style="font-family: serif; font-size: 22px;">You have been invited</h1>
+<p>You have been invited to create a user on {{ '{{ .SiteURL }}' }}. Follow this link to accept the invite:</p>
+<a href="{{ '{{ .SiteURL }}' }}/admin/#invite_token={{ '{{ .Token }}' }}">Accept the invite</a>
+
+<p>If the above link doesn't work, copy this and paste is directly into your browser.</p>
+<p>{{ '{{ .SiteURL }}' }}/admin/#invite_token={{ '{{ .Token }}' }}</p>

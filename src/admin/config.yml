@@ -1,0 +1,143 @@
+backend:
+  # Use netlify identity as backend
+  name: git-gateway
+  branch: main
+  ### enable below lines for github integration ###
+  # name: github
+  # repo: surjithctly/neat-starter
+media_folder: "src/static/img"
+public_folder: "/static/img"
+
+# Please run "npx netlify-cms-proxy-server" for local backend
+local_backend: true
+# publish_mode: editorial_workflow
+collections:
+  - label: "Blog"
+    name: "blog"
+    folder: "src/blog"
+    create: true
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - label: "Category"
+        name: "category"
+        widget: "relation"
+        collection: "category"
+        search_fields: ["title"]
+        value_field: "title"
+        display_fields: ["title"]
+      - { label: "Body", name: "body", widget: "markdown" }
+  - label: "Categories"
+    name: "category"
+    folder: "src/categories"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+  - label: "Pages"
+    name: "page"
+    folder: "src/pages"
+    create: true
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - label: "Settings"
+    name: "settings"
+    editor:
+      preview: false
+    files:
+      - label: "Navigation"
+        name: "items"
+        file: "src/_data/navigation.yaml"
+        fields:
+          - label: Nav Items
+            name: items
+            widget: list
+            allow_add: true
+            collapsed: false
+            fields:
+              - { label: Title, name: text, widget: string }
+              - { label: URL, name: url, widget: string }
+      - label: "Settings"
+        name: "settings"
+        file: "src/_data/settings.yaml"
+        fields:
+          - { label: Site Name, name: site_name, widget: string }
+          - { label: Logo, name: logo, widget: image }
+      - label: "Home Page"
+        name: "home"
+        file: "src/_data/home.yaml"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Image, name: image, widget: image }
+          - { label: Button Text, name: button_text, widget: string }
+          - { label: Button Link, name: button_link, widget: string }
+          - { label: Link One URL (Left), name: link_one, widget: string }
+          - { label: Link One Text, name: link_one_text, widget: string }
+          - { label: Link Two URL (Right), name: link_two, widget: string }
+          - { label: Link Two Text, name: link_two_text, widget: string }
+          - { label: Full Screen Featured Image, name: full_screen_image, widget: image }
+          - { label: CTA Title, name: cta_title, widget: string }
+          - { label: CTA Description, name: cta_description, widget: string }
+          - { label: Footer CTA Title, name: footer_cta_title, widget: string }
+          - { label: Footer CTA Description, name: footer_cta_description, widget: string }
+          - { label: Footer CTA Button Text, name: footer_cta_button_text, widget: string }
+          - { label: Footer CTA Button Link, name: footer_cta_button_link, widget: string }
+          - { label: Footer CTA Image, name: footer_cta_image, widget: image }
+      - label: "Blog"
+        name: "blog"
+        file: "src/_data/blog.yaml"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+      - label: "Contact"
+        name: "contact"
+        file: "src/_data/contact.yaml"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Telephone, name: tel, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Opening Times, name: opening_times, widget: string }
+          - { label: Address, name: address, widget: string }
+      - label: "Footer"
+        name: "footer"
+        file: "src/_data/footer.yaml"
+        fields:
+          - { label: Section One Title, name: section_one_title, widget: string }
+          - label: Section One Links
+            name: section_one_links
+            widget: list
+            allow_add: true
+            collapsed: false
+            fields:
+              - { label: Title, name: text, widget: string }
+              - { label: URL, name: url, widget: string }
+          - { label: Section Two Title, name: section_two_title, widget: string }
+          - label: Section Two Links
+            name: section_two_links
+            widget: list
+            allow_add: true
+            collapsed: false
+            fields:
+              - { label: Title, name: text, widget: string }
+              - { label: URL, name: url, widget: string }
+          - { label: Section Three Title, name: section_three_title, widget: string }
+          - label: Section Three Links
+            name: section_three_links
+            widget: list
+            allow_add: true
+            collapsed: false
+            fields:
+              - { label: Title, name: text, widget: string }
+              - { label: URL, name: url, widget: string }

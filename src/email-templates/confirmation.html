@@ -1,0 +1,10 @@
+---
+permalink: '/email-templates/confirmation.html'
+---
+
+<h1 style="font-family: serif; font-size: 22px;">You have been invited</h1>
+<p>Verify your email {{ '{{ .SiteURL }}' }}. Follow this link to confirm:</p>
+<a href="{{ '{{ .SiteURL }}' }}/admin/#confirmation_token={{ '{{ .Token }}' }}">Confirm email</a>
+
+<p>If the above link doesn't work, copy this and paste is directly into your browser.</p>
+<p>{{ '{{ .SiteURL }}' }}/admin/#confirmation_token={{ '{{ .Token }}' }}</p>
