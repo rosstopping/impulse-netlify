@@ -13,7 +13,7 @@ Perfect for blogging websites, Impulse Netlify comes with everything you need to
 [Deploy to netlify](https://app.netlify.com/start/deploy?repository=https://github.com/rosstopping/impulse-netlify&stack=cms)
 
 
-| ![image](https://novolio.dev/storage/themes/impulse/preview.png) |
+| ![image](https://novolio.dev/images/themes/impulse/preview.png) |
 | ------------------------------------------------------------------------------------------------------------- |
 
 ## Getting Started
