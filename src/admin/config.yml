@@ -29,6 +29,7 @@ collections:
         collection: "category"
         search_fields: ["title"]
         value_field: "title"
+        required: false
         display_fields: ["title"]
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Categories"
@@ -39,7 +40,7 @@ collections:
       preview: false
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Description", name: "description", widget: "string", required: false }
       - { label: "Image", name: "image", widget: "image" }
   - label: "Pages"
     name: "page"
@@ -49,7 +50,7 @@ collections:
       preview: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Description", name: "description", widget: "string", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
   - label: "Settings"
     name: "settings"
@@ -73,7 +74,7 @@ collections:
         file: "src/_data/settings.yaml"
         fields:
           - { label: Site Name, name: site_name, widget: string }
-          - { label: Logo, name: logo, widget: image }
+          - { label: Logo, name: logo, widget: image, required: false }
       - label: "Home Page"
         name: "home"
         file: "src/_data/home.yaml"
@@ -82,39 +83,39 @@ collections:
           - { label: Image, name: image, widget: image }
           - { label: Button Text, name: button_text, widget: string }
           - { label: Button Link, name: button_link, widget: string }
-          - { label: Link One URL (Left), name: link_one, widget: string }
-          - { label: Link One Text, name: link_one_text, widget: string }
-          - { label: Link Two URL (Right), name: link_two, widget: string }
-          - { label: Link Two Text, name: link_two_text, widget: string }
-          - { label: Full Screen Featured Image, name: full_screen_image, widget: image }
-          - { label: CTA Title, name: cta_title, widget: string }
-          - { label: CTA Description, name: cta_description, widget: string }
-          - { label: Footer CTA Title, name: footer_cta_title, widget: string }
-          - { label: Footer CTA Description, name: footer_cta_description, widget: string }
-          - { label: Footer CTA Button Text, name: footer_cta_button_text, widget: string }
-          - { label: Footer CTA Button Link, name: footer_cta_button_link, widget: string }
-          - { label: Footer CTA Image, name: footer_cta_image, widget: image }
+          - { label: Link One URL (Left), name: link_one, widget: string, required: false }
+          - { label: Link One Text, name: link_one_text, widget: string, required: false }
+          - { label: Link Two URL (Right), name: link_two, widget: string, required: false }
+          - { label: Link Two Text, name: link_two_text, widget: string, required: false }
+          - { label: Full Screen Featured Image, name: full_screen_image, widget: image, required: false }
+          - { label: CTA Title, name: cta_title, widget: string, required: false }
+          - { label: CTA Description, name: cta_description, widget: string, required: false }
+          - { label: Footer CTA Title, name: footer_cta_title, widget: string, required: false }
+          - { label: Footer CTA Description, name: footer_cta_description, widget: string, required: false }
+          - { label: Footer CTA Button Text, name: footer_cta_button_text, widget: string, required: false }
+          - { label: Footer CTA Button Link, name: footer_cta_button_link, widget: string, required: false }
+          - { label: Footer CTA Image, name: footer_cta_image, widget: image, required: false }
       - label: "Blog"
         name: "blog"
         file: "src/_data/blog.yaml"
         fields:
           - { label: Title, name: title, widget: string }
-          - { label: Description, name: description, widget: string }
+          - { label: Description, name: description, widget: string, required: false }
       - label: "Contact"
         name: "contact"
         file: "src/_data/contact.yaml"
         fields:
           - { label: Title, name: title, widget: string }
-          - { label: Description, name: description, widget: string }
-          - { label: Telephone, name: tel, widget: string }
-          - { label: Email, name: email, widget: string }
-          - { label: Opening Times, name: opening_times, widget: string }
-          - { label: Address, name: address, widget: string }
+          - { label: Description, name: description, widget: string, required: false }
+          - { label: Telephone, name: tel, widget: string, required: false }
+          - { label: Email, name: email, widget: string, required: false }
+          - { label: Opening Times, name: opening_times, widget: string, required: false }
+          - { label: Address, name: address, widget: string, required: false }
       - label: "Footer"
         name: "footer"
         file: "src/_data/footer.yaml"
         fields:
-          - { label: Section One Title, name: section_one_title, widget: string }
+          - { label: Section One Title, name: section_one_title, widget: string, required: false }
           - label: Section One Links
             name: section_one_links
             widget: list
@@ -123,7 +124,7 @@ collections:
             fields:
               - { label: Title, name: text, widget: string }
               - { label: URL, name: url, widget: string }
-          - { label: Section Two Title, name: section_two_title, widget: string }
+          - { label: Section Two Title, name: section_two_title, widget: string, required: false }
           - label: Section Two Links
             name: section_two_links
             widget: list
@@ -132,7 +133,7 @@ collections:
             fields:
               - { label: Title, name: text, widget: string }
               - { label: URL, name: url, widget: string }
-          - { label: Section Three Title, name: section_three_title, widget: string }
+          - { label: Section Three Title, name: section_three_title, widget: string, required: false }
           - label: Section Three Links
             name: section_three_links
             widget: list
