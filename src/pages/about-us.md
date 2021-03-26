@@ -1,5 +1,5 @@
 ---
-title: "About Us "
+title: About Us
 description: null
 ---
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
