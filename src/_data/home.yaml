@@ -1,4 +1,3 @@
----
 title: A taste of every lifestyle
 image: https://images.unsplash.com/photo-1490129375591-2658b3e2ee50?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2244&q=80
 button_text: Read the blog
@@ -7,11 +6,13 @@ link_one: /pages/about-us
 link_one_text: Find out more
 link_two: /contact
 link_two_text: Get in touch
-full_screen_image: https://images.unsplash.com/photo-1501901609772-df0848060b33?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80
+full_screen_image: ""
 cta_title: We love to travel
-cta_description: Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. 
+cta_description: Iterative approaches to corporate strategy foster collaborative
+  thinking to further the overall value proposition.
 footer_cta_title: Endlessly customizable
-footer_cta_description: Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
+footer_cta_description: Organically grow the holistic world view of disruptive
+  innovation via workplace diversity and empowerment.
 footer_cta_button_text: Find out more
 footer_cta_button_link: /pages/about-us
 footer_cta_image: https://images.unsplash.com/photo-1503516459261-40c66117780a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1949&q=80
