@@ -12,8 +12,6 @@ Perfect for blogging & ecomerce websites, Impulse Netlify comes with everything 
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/rosstopping/impulse-netlify&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" /></a>
 
-| ------------------------------------------------------------------------------------------------------------- |
-
 ## Using template on Netlify
 
 ### 1\. Setup a new git repository
@@ -88,4 +86,4 @@ npm run start
 
 ## Author
 
-Novolio [@digizultd](https://digizu.co.uk/)
+Digizu [@digizultd](https://digizu.co.uk/)
