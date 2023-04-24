@@ -1,8 +1,8 @@
-# Impulse - A Novolio Template for Netlify
+# Impulse - A Template for Netlify
 
-Built using Netlify CMS, Eleventy, Alpine JS & Tailwind CSS
+Built using Netlify CMS, Eleventy, Alpine.js & TailwindCSS, Stripe
 
-Perfect for blogging websites, Impulse Netlify comes with everything you need to get started with NetlifyCMS support.
+Perfect for blogging & ecomerce websites, Impulse Netlify comes with everything you need to get started with NetlifyCMS support.
 
 ## Live Demo
 
@@ -12,13 +12,9 @@ Perfect for blogging websites, Impulse Netlify comes with everything you need to
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/rosstopping/impulse-netlify&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" /></a>
 
-
-| ![image](https://novolio.dev/images/themes/impulse/preview.png) |
 | ------------------------------------------------------------------------------------------------------------- |
 
 ## Using template on Netlify
-
-Prefer to watch a quick tutorial? [Watch video](https://www.youtube.com/watch?v=b3R7Ca1saJI)
 
 ### 1\. Setup a new git repository
 
@@ -92,4 +88,4 @@ npm run start
 
 ## Author
 
-Novolio [@novolio_dev](https://novolio.dev/)
+Novolio [@digizultd](https://digizu.co.uk/)
