@@ -1,6 +1,6 @@
 # Impulse - A Novolio Template for Netlify
 
-Built using Netlify CMS, Eleventy, Alphine JS & Tailwind CSS
+Built using Netlify CMS, Eleventy, Alpine JS & Tailwind CSS
 
 Perfect for blogging websites, Impulse Netlify comes with everything you need to get started with NetlifyCMS support.
 

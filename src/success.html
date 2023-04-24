@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div x-data="success()" x-init="init()">
+	<div>
+		<div class="text-center py-12 mb-12 px-6">
+			<h1 class="text-3xl lg:text-4xl mb-6 font-display text-black leading-tight">Thank you for your purchase.</h1>
+			<p class="max-w-lg mx-auto">Your payment was successful.</p>
+		</div>
+	</div>
+</div>
+
+<script>
+    const success = () => ({
+    	init() {
+            localStorage.removeItem('basket');
+    	}
+    });
+</script>

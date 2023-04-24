@@ -1,3 +1,5 @@
 ---
 site_name: impulse
 logo: 
+currency_symbol: £
+currency_code: GBP

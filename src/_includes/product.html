@@ -1,0 +1,126 @@
+---
+layout: default
+---
+
+<script>
+	const product = () => ({
+		quantity: 1,
+		price: {{ price }},
+        variants: [
+            {% for variant in variants %}
+            {% if variant.options.length > 0 %}
+	            {
+	                "name": "{{ variant.name }}",
+	                "value" : "{{ variant.options[0].name }}",
+	                "options": [
+	                	{% for option in variant.options %}
+		                	{
+		                		"name" : "{{ option.name }}"
+		                	},
+	            		{% endfor %}
+	                ],
+	            },
+	        {% endif %}
+            {% endfor %}
+        ],
+		basket: [],
+		addedToCart: false,
+		addToCart() {
+			for (i = 0; i < this.quantity; i++) {
+				this.basket.push({
+					"product" : "{{ page.url }}",
+					"variants" : collect(this.variants).transform((variant) => {
+						return {"name": variant.name, "value": variant.value};
+					}).all()
+				});
+			}
+			localStorage.setItem('basket', JSON.stringify(this.basket));
+			this.addedToCart = true;
+		},
+		init() {
+			this.basket = localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : [];
+		}
+	});
+</script>
+
+<div x-data="product()" x-init="init()">
+
+    <template x-if="addedToCart">
+
+		<div class="z-50 bg-black bg-opacity-50 fixed inset-0 w-screen min-h-screen lg:h-screen lg:flex lg:justify-center lg:items-center p-12">
+			<div class="w-full max-w-sm bg-white text-xs uppercase shadow-2xl">
+
+				<div class="pt-6 pr-6 flex justify-end">
+					<button x-on:click="addedToCart = false" type="button">
+						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+					</button>
+				</div>
+
+				<div class="px-6 md:px-12 py-6 text-center">
+					<p>{{ title }} has been added to your cart.</p>
+				</div>				
+
+				<div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+					<button x-on:click="addedToCart = false" type="button" class="block text-center font-semibold px-4 py-4 bg-gray-200 text-gray-500 uppercase text-xs">
+						Continue Shopping
+					</button>
+					<a href="/cart" class="block text-center font-semibold px-4 py-4 bg-gray-900 text-gray-100 uppercase text-xs">
+						Go to cart
+					</a>
+				</div>
+			</div>
+		</div>
+    </template>
+
+	<div class="flex flex-wrap container mx-auto px-6 mb-12 pt-12">
+
+		<div class="w-full lg:flex-1 lg:pr-12 overflow-x-scroll lg:overflow-visible">
+			<div class="flex flex-nowrap h-96 lg:h-auto lg:block">
+				{% for image in images %}
+				<img src="{{ image.image }}" class="w-screen h-auto lg:w-auto object-cover mr-4 lg:mr-0 lg:mb-4" />
+				{% endfor %}
+			</div>
+		</div>
+
+		<div class="w-full lg:h-screen lg:w-96 lg:sticky top-0 pt-12 lg:overflow-y-scroll">
+
+			<!-- <div class="text-xs text-gray-600 uppercase font-semibold">Category</div> -->
+			<h2 class="mt-3 text-2xl mb-4 font-display text-black leading-tight max-w-sm">{{ title }}</h2>
+			<div class="mb-6">{{ settings.currency_symbol }}{{ price }} {% if compare_price %}<span class="text-xs ml-1 text-red-500 line-through">{{ settings.currency_symbol }}{{ compare_price }}</span>{% endif %}</div>
+			<p class="text-sm leading-relaxed">{{ description }}</p>
+
+			{% if external_url %}
+
+				<div class="mt-2">
+					<a href="{{ external_url }}" class="mt-4 w-48 inline-block text-center font-semibold px-12 py-2 bg-gray-900 text-gray-100 uppercase text-xs">
+						<div>Buy now</div>
+						<div>&pound;<span x-text="(price * quantity).toFixed(2)"></span></div>
+					</button>
+				</div>
+
+			{% else %}
+
+				<div class="mt-2">
+
+					<div class="flex h-12 w-48 mt-4 bg-gray-100 border border-gray-100">
+						<button x-on:click="quantity != 1 ? quantity-- : 1" type="button" class="h-12 w-12 flex-shrink-0 hover:bg-gray-200">-</button>
+						<input type="text" name="quantity" class="h-full flex-1 w-full flex-shrink text-center border-transparent" x-model="quantity" readonly />
+						<button x-on:click="quantity++" type="button" class="h-12 w-12 flex-shrink-0 hover:bg-gray-200">+</button>
+					</div>
+
+					<button x-on:click="addToCart" type="button" class="mt-4 w-48 inline-block text-center font-semibold px-12 py-2 bg-gray-900 text-gray-100 uppercase text-xs">
+						<div>Add to cart</div>
+						<div>&pound;<span x-text="(price * quantity).toFixed(2)"></span></div>
+					</button>
+				</div>
+			{% endif %}
+
+		</div>
+	</div>
+</div>
+
+<div class="container mx-auto px-6 pb-12">
+	<div class="prose max-w-none">
+		{{ content | safe }}
+	</div>
+</div>

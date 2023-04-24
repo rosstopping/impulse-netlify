@@ -2,9 +2,6 @@ backend:
   # Use netlify identity as backend
   name: git-gateway
   branch: main
-  ### enable below lines for github integration ###
-  # name: github
-  # repo: surjithctly/neat-starter
 media_folder: "src/static/img"
 public_folder: "/static/img"
 
@@ -12,6 +9,26 @@ public_folder: "/static/img"
 local_backend: true
 # publish_mode: editorial_workflow
 collections:
+  - label: "Products"
+    name: "product"
+    folder: "src/products"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Price", name: "price", widget: "string" }
+      - { label: "Featured Image", name: "featured_image", widget: "image" }
+      - label: Images
+        name: images
+        widget: list
+        allow_add: true
+        collapsed: false
+        fields:
+          - { label: Image, name: image, widget: image }
+      - { label: "External URL", name: "external_url", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
   - label: "Blog"
     name: "blog"
     folder: "src/blog"

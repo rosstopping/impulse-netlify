@@ -1,0 +1,25 @@
+---
+layout: default
+title: Our Catalog
+---
+
+<div class="text-center py-12 px-6">
+    <h1 class="text-3xl lg:text-4xl mb-6 font-display text-black leading-tight">{{ products.title }}</h1>
+    <p class="max-w-lg mx-auto">{{ products.description }}</p>
+</div>
+
+<div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-4 gap-8 text-center mt-12 pb-12">
+    {% for product in collections.products | reverse %}
+        <div class="col-span-1 row-span-1">
+            <div class="w-full h-52 relative">          
+                <a href="{{ product.url | url }}">
+                    <img src="{{ product.data.featured_image }}" class="absolute inset-0 w-full h-full object-cover" />
+                </a>
+            </div>
+            <div class="p-6">
+                <a href="{{ product.url | url }}" class="block font-semibold text-black mb-1">{{ product.data.title }}</a>
+                <div>{{ settings.currency_symbol }}{{ product.data.price }}</div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,15 @@
+---
+permalink: '/products.json'
+---
+{
+  "products": [
+    {% for product in collections.products %}
+      {
+        "id": "{{ product.url | url }}",
+        "url": "{{ product.url | url }}",
+        "title": "{{ product.data.title }}",
+        "price": {{ product.data.price }}
+      }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}

@@ -1,0 +1,183 @@
+---
+layout: default
+title: Shopping Cart
+---
+<div x-data="basket()" x-init="init()" class="container mx-auto px-6 mb-12 py-12">
+
+    <template x-if="loading">
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <svg class="w-8 h-8 text-white relative animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        </div>
+    </template>
+
+    <template x-if="total_quantity > 0">
+        <div>
+                
+            <h1 class="text-2xl font-display text-black leading-tight">My Cart (<span x-text="total_quantity"></span>)</h1>
+
+            <div class="mt-6">
+
+                <template x-for="product in products">
+
+                    <div class="flex justify-between items-center pb-6 mb-6 border-b border-gray-200">
+                        <div class="flex items-center">
+                            <img :src="product.image" class="w-16 lg:w-32 h-16 lg:h-32 object-cover bg-gray-100" />
+                            <div class="px-6 lg:px-12 text-xs uppercase flex flex-col justify-center">
+                                <div class="text-gray-900 font-semibold" x-text="product.title"></div>
+                                <div class="mt-2" x-text="'{{ settings.currency_symbol }}'+product.price">{{ settings.currency_symbol }}0.00</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6 pl-4">
+                            <button x-on:click="removeProduct(product)" class="text-xs underline">Remove</button>
+                            <div class="text-xs text-gray-900" x-text="product.quantity">1</div>
+                            <div class="text-xs" x-text="'{{ settings.currency_symbol }}'+(product.price * product.quantity).toFixed(2)">{{ settings.currency_symbol }}0.00</div>
+                        </div>
+                    </div>
+
+                </template>
+
+            </div>
+
+            <div class="flex justify-end">
+                <button x-on:click="checkout()" class="mt-4 w-48 inline-block text-center font-semibold px-12 py-2 bg-gray-900 text-gray-100 uppercase text-xs">
+                    <div>Checkout</div>
+                    <div x-text="'{{ settings.currency_symbol }}'+total_price">{{ settings.currency_symbol }}00.00</div>
+                </button>
+            </div>
+
+        </div>
+    </template>
+
+    <template x-if="total_quantity === 0">
+        <div>
+            <div class="text-center py-12 mb-12 px-6">
+                <h1 class="text-3xl lg:text-4xl mb-6 font-display text-black leading-tight">There's nothing in your cart right now</h1>
+                <p class="max-w-lg mx-auto">Go back to products page and add some.</p>
+            </div>
+        </div>
+    </template>
+
+</div>
+
+
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const basket = () => ({
+        loading: false,
+        // get all available products from collection
+        all_products: [
+            {% for product in collections.products %}
+            {
+                "id": "{{ product.url | url }}",
+                "url": "{{ product.url | url }}",
+                "title": "{{ product.data.title }}",
+                "image": "{{ product.data.featured_image }}",
+                "price": {{ product.data.price }}
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ],
+        // array of products in basket
+        products: [],
+        total_price: 0,
+        total_quantity: 0,
+        getBasket() {
+            // rest the products
+            this.products = [];
+            // get the basket from local storage
+            const basket = localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : [];
+            // loop through basket items to get products
+            collect(basket).each((item) => {
+                // check if product is already in basket
+                let productInBasket = collect(this.products).where('id', item.product).first();
+
+                if (productInBasket) {
+                    // add 1 to quantity
+                    productInBasket.quantity++;
+                }
+                else {
+                    // get original product data
+                    productData = collect(this.all_products).where('id', item.product).first();
+                    if (productData) {
+                        this.products.push({
+                            "id" : productData.id,
+                            "url" : productData.url,
+                            "title" : productData.title,
+                            "image" : productData.image,
+                            "price" : productData.price,
+                            "quantity" : 1
+                        });
+                    }
+                }
+            });
+        },
+        getTotalPrice() {
+            // loop through products at multiply price by quantity
+            this.total_price = 0;
+            collect(this.products).each((product) => this.total_price += product.price * product.quantity);
+            this.total_price = this.total_price.toFixed(2);
+        },
+        getTotalQuantity() {
+            // loop through products and sum by quantity
+            this.total_quantity = 0;
+            this.total_quantity = collect(this.products).sum('quantity');
+        },
+        removeProduct(product) {            
+            // loop through products and remove any that match ID
+            this.products = collect(this.products).filter((item) => {
+                return JSON.stringify(product) != JSON.stringify(item);
+            }).all();
+
+            // convert products array back to format for basket in localstorage
+            const basket = [];
+            collect(this.products).each((product) => {
+                // the product id needs to be added for each quantity
+                for (var i = 0; i < product.quantity; i++) {
+                    basket.push({
+                        "product" : product.id
+                    });
+                }
+            });
+
+            // add this back to localstorage to keep in sync
+            localStorage.setItem('basket', JSON.stringify(basket));
+
+            // re-initialise data
+            this.init();
+        },
+        checkout() {
+            // show loading animationg
+            this.loading = true;
+
+            // we only want the product ID and quantity for this request
+            const products = JSON.stringify(collect(this.products).transform((product) => {
+                return {
+                    id : product.id,
+                    quantity : product.quantity
+                }
+            }).all());
+
+            // create the stripe checkout
+            axios.get('/.netlify/functions/create-checkout', {
+                params: {
+                    products: products
+                }
+            })
+            .then(function (response) {
+                const stripe = Stripe(response.data.stripe_key);
+                const { error } = stripe.redirectToCheckout({
+                    sessionId: response.data.sessionId,
+                });
+            })
+            .catch(function (error) {
+                alert(error);
+            })
+            .then(() => this.loading = false);
+        },
+        init() {
+            this.getBasket();
+            this.getTotalPrice();
+            this.getTotalQuantity();
+        }
+    });
+</script>
